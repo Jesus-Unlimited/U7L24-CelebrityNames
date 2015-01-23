@@ -4,16 +4,18 @@ import java.util.*;
 /**
  * Write a description of class CelebrityNames here.
  * 
- * @author Roger Jaffe
+ * @author Sirwin and Jack
  * @version 2015-01-19
  */
 public class CelebrityNames
 {
-    public static final String FILE_NAME = "CelebrityData.txt";
+    public static final String FILE_NAME = "C:\\Users\\srios\\Desktop\\APCS\\CelebrityData.txt";
     public static void main(String args[]) throws IOException
     { 
-        Scanner sf = new Scanner(new File(FILE_NAME));
+        Scanner sf = new Scanner(new File("CelebrityData.txt") );
+        FileWriter fw = new FileWriter("C:\\Users\\srios\\Desktop\\Output1.out"); 
 
+        PrintWriter output = new PrintWriter(fw);
         int maxIndx = -1; //-1 so when we increment below, the first index is 0
         String text[] = new String[1000]; //to be safe, declare more than we need
 
@@ -30,14 +32,22 @@ public class CelebrityNames
         { 
             Scanner sc = new Scanner( text[j] );
             String firstName = sc.next( );
+            String middleName = sc.next( );
             String lastName = sc.next( );
-            reversedName[j] = lastName + ", " + firstName;
+            String birthDate = sc.next( );
+            reversedName[j] = lastName + "," + " " + firstName + " " + middleName + "--" + birthDate;
+
         } 
-        
+
         Arrays.sort(reversedName);
         for (int j =0; j <= maxIndx; j++)
         { 
             System.out.println(reversedName[j]);
+            output.println(reversedName[j]);
         } 
+        output.close( ); //These two lines are very important. Some of the data 
+
+        fw.close( ); //
     }
+    
 }
